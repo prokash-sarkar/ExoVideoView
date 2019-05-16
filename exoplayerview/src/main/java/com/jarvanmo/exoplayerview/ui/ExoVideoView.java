@@ -9,12 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.os.Build;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -26,6 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ControlDispatcher;
@@ -931,7 +930,7 @@ public class ExoVideoView extends FrameLayout implements ExoVideoPlaybackControl
 
         DefaultRenderersFactory renderersFactory = new DefaultRenderersFactory(getContext(),
                 null, DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF);
-        SimpleExoPlayer internalPlayer = ExoPlayerFactory.newSimpleInstance(renderersFactory, creator.getTrackSelector());
+        SimpleExoPlayer internalPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), renderersFactory, creator.getTrackSelector());
         internalPlayer.addListener(componentListener);
         internalPlayer.addListener(creator.getEventLogger());
         internalPlayer.addMetadataOutput(creator.getEventLogger());
@@ -1106,7 +1105,7 @@ public class ExoVideoView extends FrameLayout implements ExoVideoPlaybackControl
         }
     }
 
-    private final class ComponentListener   implements TextOutput,Player.EventListener,
+    private final class ComponentListener implements TextOutput, Player.EventListener,
             com.google.android.exoplayer2.video.VideoListener {
 
         // TextOutput implementation

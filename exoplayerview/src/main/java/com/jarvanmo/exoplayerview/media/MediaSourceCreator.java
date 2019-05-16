@@ -77,8 +77,8 @@ public class MediaSourceCreator {
             case C.TYPE_DASH:
                 return new DashMediaSource(uri, buildDataSourceFactory(false),
                         new DefaultDashChunkSource.Factory(mediaDataSourceFactory), mainHandler, eventLogger);
-            case C.TYPE_HLS:
-                return new HlsMediaSource(uri, mediaDataSourceFactory, mainHandler, eventLogger);
+            /*case C.TYPE_HLS:
+                return new HlsMediaSource(uri, mediaDataSourceFactory, mainHandler, eventLogger);*/
             case C.TYPE_OTHER:
                 return new ExtractorMediaSource(uri, mediaDataSourceFactory, new DefaultExtractorsFactory(),
                         mainHandler, eventLogger);
